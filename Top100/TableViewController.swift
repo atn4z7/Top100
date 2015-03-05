@@ -25,6 +25,10 @@ class TableViewController: UITableViewController, NSXMLParserDelegate {
         url = NSURL(string: "https://itunes.apple.com/us/rss/topsongs/limit=10/xml")!
         // Call custom function.
         loadRss(url);
+        //test
+       
+        
+        
     }
     
     func loadRss(data: NSURL) {

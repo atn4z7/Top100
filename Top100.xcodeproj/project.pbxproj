@@ -16,6 +16,7 @@
 		BCDE8AAE1A96982200A8C323 /* photo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = BCDE8AAD1A96982200A8C323 /* photo.jpg */; };
 		BCDE8AB01A9699DC00A8C323 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCDE8AAF1A9699DC00A8C323 /* TableViewCell.swift */; };
 		BCDE8AB21A96E69300A8C323 /* XMLParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCDE8AB11A96E69300A8C323 /* XMLParser.swift */; };
+		F023B7AA1AA8F5790072B9AD /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = F023B7A91AA8F5790072B9AD /* SwiftyJSON.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +43,7 @@
 		BCDE8AAD1A96982200A8C323 /* photo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = photo.jpg; sourceTree = "<group>"; };
 		BCDE8AAF1A9699DC00A8C323 /* TableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		BCDE8AB11A96E69300A8C323 /* XMLParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XMLParser.swift; sourceTree = "<group>"; };
+		F023B7A91AA8F5790072B9AD /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +85,7 @@
 		BC81132B1A969279007C4CA0 /* Top100 */ = {
 			isa = PBXGroup;
 			children = (
+				F023B7A91AA8F5790072B9AD /* SwiftyJSON.swift */,
 				BCDE8AAD1A96982200A8C323 /* photo.jpg */,
 				BCDE8AAB1A96972E00A8C323 /* TableViewController.swift */,
 				BCDE8AB11A96E69300A8C323 /* XMLParser.swift */,
@@ -225,6 +228,7 @@
 				BCDE8AB21A96E69300A8C323 /* XMLParser.swift in Sources */,
 				BCDE8AB01A9699DC00A8C323 /* TableViewCell.swift in Sources */,
 				BC81132F1A969279007C4CA0 /* AppDelegate.swift in Sources */,
+				F023B7AA1AA8F5790072B9AD /* SwiftyJSON.swift in Sources */,
 				BCDE8AAC1A96972E00A8C323 /* TableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -350,6 +354,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Top100/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -360,6 +365,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Top100/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
