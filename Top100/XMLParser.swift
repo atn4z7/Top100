@@ -7,9 +7,11 @@
 //
 
 import Foundation
+import UIKit
+import QuartzCore
+import AVFoundation
 
-
-class XmlParserManager: NSObject, NSXMLParserDelegate {
+class XmlParserManager: NSObject,NSXMLParserDelegate,UIAlertViewDelegate {
     
     var parser = NSXMLParser()
     var feeds = NSMutableArray()
@@ -18,7 +20,7 @@ class XmlParserManager: NSObject, NSXMLParserDelegate {
     var ftitle = NSMutableString()
     var link = NSMutableString()
     var height = NSString()
-
+    var apiKey = NSString()
     
     // initilise parser
     func initWithURL(url :NSURL) -> AnyObject {
@@ -64,13 +66,19 @@ class XmlParserManager: NSObject, NSXMLParserDelegate {
             if ftitle != "" {
                
                 elements.setObject(ftitle, forKey: "title")
+        
+                //get video ID on youtube
+                var originalString = ftitle
+                var escapedString = originalString.stringByAddingPercentEncodingWithAllowedCharacters(
+                   .URLQueryAllowedCharacterSet())
+                var url = "https://www.googleapis.com/youtube/v3/search?part=snippet&order=viewCount&q=\(escapedString!)&type=video&videoCaption=any&videoCategoryId=10&key=\(apiKey)"
+                getVideoInfoFromYoutube(url,title:ftitle)
             }
             
             if link != "" {
          
                 elements.setObject(link, forKey: "image")
             }
-            
             feeds.addObject(elements)
         }
         
@@ -88,5 +96,33 @@ class XmlParserManager: NSObject, NSXMLParserDelegate {
         }
     }
     
+    //get videoID on Youtube
+    func getVideoInfoFromYoutube(url: NSString,title: NSString){
+        let urlPath = url;
+        let url: NSURL = NSURL(string: urlPath)!
+        let session = NSURLSession.sharedSession()
+        let task = session.dataTaskWithURL(url, completionHandler: {data, response, error -> Void in
+        
+            if error != nil {
+                // If there is an error in the web request, print it to the console
+                println(error.localizedDescription)
+            }
+
+            /*  doesn't need this
+            var err: NSError?
+            var jsonResult = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers,  error: &err) as NSDictionary
+            if err != nil {
+            // If there is an error parsing JSON, print it to the console
+            println("JSON Error \(err!.localizedDescription)")
+            }*/
+            
+            let json = JSON(data: data)
+            if let vidID = json["items"][0]["id"]["videoId"].stringValue as NSString? {
+                println("https://www.youtube.com/watch?v=\(vidID)")
+                println(title)
+            }
+        })
+    task.resume()
+    }
     
 }

@@ -22,21 +22,19 @@ class TableViewController: UITableViewController, NSXMLParserDelegate {
         
         
         // Set feed url
-        url = NSURL(string: "https://itunes.apple.com/us/rss/topsongs/limit=10/xml")!
+        var url = NSURL(string: "https://itunes.apple.com/us/rss/topsongs/limit=10/xml")!
         // Call custom function.
-        loadRss(url);
-        //test
-       
-        
+        loadRss(url)
+
         
     }
     
+        
     func loadRss(data: NSURL) {
         // XmlParserManager instance
         var myParser : XmlParserManager = XmlParserManager.alloc().initWithURL(data) as XmlParserManager
         // Put feed in array
         myFeed = myParser.feeds
-        
         tableView.reloadData()
     }
 
