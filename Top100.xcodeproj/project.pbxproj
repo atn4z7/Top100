@@ -17,6 +17,9 @@
 		BCDE8AB01A9699DC00A8C323 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCDE8AAF1A9699DC00A8C323 /* TableViewCell.swift */; };
 		BCDE8AB21A96E69300A8C323 /* XMLParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCDE8AB11A96E69300A8C323 /* XMLParser.swift */; };
 		F023B7AA1AA8F5790072B9AD /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = F023B7A91AA8F5790072B9AD /* SwiftyJSON.swift */; };
+		F0CEDA4B1AA9404600AEB62A /* YTPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = F0CEDA4A1AA9404600AEB62A /* YTPlayerView.m */; };
+		F0CEDA4D1AA9406700AEB62A /* Assets in Resources */ = {isa = PBXBuildFile; fileRef = F0CEDA4C1AA9406700AEB62A /* Assets */; };
+		F0CEDA4F1AA9436300AEB62A /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0CEDA4E1AA9436300AEB62A /* DetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +47,11 @@
 		BCDE8AAF1A9699DC00A8C323 /* TableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		BCDE8AB11A96E69300A8C323 /* XMLParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XMLParser.swift; sourceTree = "<group>"; };
 		F023B7A91AA8F5790072B9AD /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
+		F0CEDA481AA9404600AEB62A /* Top100-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Top100-Bridging-Header.h"; sourceTree = "<group>"; };
+		F0CEDA491AA9404600AEB62A /* YTPlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YTPlayerView.h; sourceTree = "<group>"; };
+		F0CEDA4A1AA9404600AEB62A /* YTPlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YTPlayerView.m; sourceTree = "<group>"; };
+		F0CEDA4C1AA9406700AEB62A /* Assets */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Assets; sourceTree = "<group>"; };
+		F0CEDA4E1AA9436300AEB62A /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DetailViewController.swift; path = ../DetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +93,10 @@
 		BC81132B1A969279007C4CA0 /* Top100 */ = {
 			isa = PBXGroup;
 			children = (
+				F0CEDA4E1AA9436300AEB62A /* DetailViewController.swift */,
+				F0CEDA4C1AA9406700AEB62A /* Assets */,
+				F0CEDA491AA9404600AEB62A /* YTPlayerView.h */,
+				F0CEDA4A1AA9404600AEB62A /* YTPlayerView.m */,
 				F023B7A91AA8F5790072B9AD /* SwiftyJSON.swift */,
 				BCDE8AAD1A96982200A8C323 /* photo.jpg */,
 				BCDE8AAB1A96972E00A8C323 /* TableViewController.swift */,
@@ -95,6 +107,7 @@
 				BC8113371A969279007C4CA0 /* LaunchScreen.xib */,
 				BC81132C1A969279007C4CA0 /* Supporting Files */,
 				BCDE8AAF1A9699DC00A8C323 /* TableViewCell.swift */,
+				F0CEDA481AA9404600AEB62A /* Top100-Bridging-Header.h */,
 			);
 			path = Top100;
 			sourceTree = "<group>";
@@ -204,6 +217,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F0CEDA4D1AA9406700AEB62A /* Assets in Resources */,
 				BC8113341A969279007C4CA0 /* Main.storyboard in Resources */,
 				BC8113391A969279007C4CA0 /* LaunchScreen.xib in Resources */,
 				BCDE8AAE1A96982200A8C323 /* photo.jpg in Resources */,
@@ -227,9 +241,11 @@
 			files = (
 				BCDE8AB21A96E69300A8C323 /* XMLParser.swift in Sources */,
 				BCDE8AB01A9699DC00A8C323 /* TableViewCell.swift in Sources */,
+				F0CEDA4B1AA9404600AEB62A /* YTPlayerView.m in Sources */,
 				BC81132F1A969279007C4CA0 /* AppDelegate.swift in Sources */,
 				F023B7AA1AA8F5790072B9AD /* SwiftyJSON.swift in Sources */,
 				BCDE8AAC1A96972E00A8C323 /* TableViewController.swift in Sources */,
+				F0CEDA4F1AA9436300AEB62A /* DetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -352,10 +368,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = Top100/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Top100/Top100-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -363,10 +382,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = Top100/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Top100/Top100-Bridging-Header.h";
 			};
 			name = Release;
 		};

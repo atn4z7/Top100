@@ -62,10 +62,10 @@
             </objects>
             <point key="canvasLocation" x="901" y="-87"/>
         </scene>
-        <!--View Controller-->
+        <!--Detail View Controller-->
         <scene sceneID="nkv-4S-lhJ">
             <objects>
-                <viewController id="KAf-gX-YN1" sceneMemberID="viewController">
+                <viewController id="KAf-gX-YN1" customClass="DetailViewController" customModule="Top100" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Sl4-E5-b0m"/>
                         <viewControllerLayoutGuide type="bottom" id="kbU-Kz-bGE"/>
@@ -73,8 +73,23 @@
                     <view key="view" contentMode="scaleToFill" id="Qvf-gG-yw0">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pOs-Gm-SQ3" customClass="YTPlayerView">
+                                <rect key="frame" x="36" y="100" width="536" height="220"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="pOs-Gm-SQ3" firstAttribute="top" secondItem="Sl4-E5-b0m" secondAttribute="bottom" constant="36" id="Bt2-1U-ATt"/>
+                            <constraint firstItem="kbU-Kz-bGE" firstAttribute="top" secondItem="pOs-Gm-SQ3" secondAttribute="bottom" constant="280" id="SJs-sE-vJR"/>
+                            <constraint firstItem="pOs-Gm-SQ3" firstAttribute="leading" secondItem="Qvf-gG-yw0" secondAttribute="leadingMargin" constant="20" id="cDU-9Q-9Ts"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="pOs-Gm-SQ3" secondAttribute="trailing" constant="12" id="sPc-iq-3wQ"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="playerView" destination="pOs-Gm-SQ3" id="IxL-mK-ZmL"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rax-16-nXd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

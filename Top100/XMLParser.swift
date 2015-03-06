@@ -24,6 +24,7 @@ class XmlParserManager: NSObject,NSXMLParserDelegate,UIAlertViewDelegate {
     
     // initilise parser
     func initWithURL(url :NSURL) -> AnyObject {
+        apiKey=""
         startParse(url)
         return self
     }
@@ -66,7 +67,7 @@ class XmlParserManager: NSObject,NSXMLParserDelegate,UIAlertViewDelegate {
             if ftitle != "" {
                
                 elements.setObject(ftitle, forKey: "title")
-        
+               
                 //get video ID on youtube
                 var originalString = ftitle
                 var escapedString = originalString.stringByAddingPercentEncodingWithAllowedCharacters(
@@ -97,9 +98,9 @@ class XmlParserManager: NSObject,NSXMLParserDelegate,UIAlertViewDelegate {
     }
     
     //get videoID on Youtube
-    func getVideoInfoFromYoutube(url: NSString,title: NSString){
-        let urlPath = url;
-        let url: NSURL = NSURL(string: urlPath)!
+    func getVideoInfoFromYoutube(Url: NSString,title: NSString){
+        
+        let url: NSURL = NSURL(string:Url)!
         let session = NSURLSession.sharedSession()
         let task = session.dataTaskWithURL(url, completionHandler: {data, response, error -> Void in
         
@@ -117,6 +118,7 @@ class XmlParserManager: NSObject,NSXMLParserDelegate,UIAlertViewDelegate {
             }*/
             
             let json = JSON(data: data)
+            
             if let vidID = json["items"][0]["id"]["videoId"].stringValue as NSString? {
                 println("https://www.youtube.com/watch?v=\(vidID)")
                 println(title)
