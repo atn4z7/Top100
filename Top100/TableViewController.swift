@@ -23,13 +23,12 @@ class TableViewController: UITableViewController, NSXMLParserDelegate {
         
         
         // Set feed url
-        var url = NSURL(string: "https://itunes.apple.com/us/rss/topsongs/limit=10/xml")!
+        var url = NSURL(string: "https://itunes.apple.com/us/rss/topsongs/limit=100/xml")!
         // Call custom function.
         loadRss(url)
 
         
     }
-    
         
     func loadRss(data: NSURL) {
         // XmlParserManager instance
@@ -44,14 +43,14 @@ class TableViewController: UITableViewController, NSXMLParserDelegate {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
             
        if segue.identifier == "playSong" {
-            
             var indexPath: NSIndexPath = self.tableView.indexPathForSelectedRow()!
-            //let selectedFeedURL: String = feeds[indexPath.row].objectForKey("link") as String
+        
+            let selectedTitle: String = myFeed[indexPath.row].objectForKey("title") as String
             
-            // Instance of our feedpageviewcontrolelr
-            //let fpvc: FeedPageViewController = segue.destinationViewController as FeedPageViewController
-            
-            //fpvc.selectedFeedTitle = selectedFTitle
+            // Instance of DetailViewController
+            let detailVC = segue.destinationViewController as DetailViewController
+            detailVC.Title = selectedTitle
+                   //fpvc.selectedFeedTitle = selectedFTitle
             //fpvc.selectedFeedFeedContent = selectedFContent
             //fpvc.selectedFeedURL = selectedFURL
         }

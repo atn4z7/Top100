@@ -9,12 +9,33 @@
 import UIKit
 
 class DetailViewController: UIViewController {
-    @IBOutlet var playerView: YTPlayerView!
+    var Title = NSString()
+    var ID = NSString()
+    var SearchURL = NSString()
+    var videoPlayerViewController: XCDYouTubeVideoPlayerViewController!
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        self.playerView.loadWithVideoId("M7lc1UVf-VE")
+        //encode title, get video ID then play it
+        var searchURL = YoutubeHelper.encodeTitle(Title)
+        YoutubeHelper.getVideoIDFromYoutube(searchURL){
+            (VideoID) in
+            if let responseID = VideoID as NSString? {
+                dispatch_async(dispatch_get_main_queue(), {
+                    //update UI in main thread
+                    self.ID = responseID;
+                    self.videoPlayerViewController = XCDYouTubeVideoPlayerViewController(videoIdentifier: self.ID)
+                    self.presentMoviePlayerViewControllerAnimated(self.videoPlayerViewController)
+                    });
+                
+            }
+        }
+
+        //self.videoPlayerViewController.presentInView(self.view)
+        //self.videoPlayerViewController.moviePlayer.play()
+
+        
     }
 
     override func didReceiveMemoryWarning() {
