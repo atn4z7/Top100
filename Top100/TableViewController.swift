@@ -50,9 +50,6 @@ class TableViewController: UITableViewController, NSXMLParserDelegate {
             // Instance of DetailViewController
             let detailVC = segue.destinationViewController as DetailViewController
             detailVC.Title = selectedTitle
-                   //fpvc.selectedFeedTitle = selectedFTitle
-            //fpvc.selectedFeedFeedContent = selectedFContent
-            //fpvc.selectedFeedURL = selectedFURL
         }
     }
     

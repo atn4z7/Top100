@@ -15,7 +15,6 @@ class DetailViewController: UIViewController {
     var videoPlayerViewController: XCDYouTubeVideoPlayerViewController!
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
         //encode title, get video ID then play it
         var searchURL = YoutubeHelper.encodeTitle(Title)

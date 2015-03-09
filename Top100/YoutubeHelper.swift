@@ -11,6 +11,7 @@ import Foundation
 
 class YoutubeHelper: NSObject {
     class var apiKey: NSString { return "" }
+     //func encode the title and return the search url
     class func encodeTitle(title:NSString)->NSString{
         //get video ID on youtube
         var originalString = title
@@ -19,7 +20,7 @@ class YoutubeHelper: NSObject {
         var url = "https://www.googleapis.com/youtube/v3/search?part=snippet&order=viewCount&q=\(escapedString!)&type=video&videoCaption=any&videoCategoryId=10&key=\(apiKey)"
         return url
     }
-    //get videoID on Youtube
+    //func get videoID on Youtube
     class func getVideoIDFromYoutube(Url: NSString, VideoID: (NSString) -> ()){
         var result = NSString()
         let url: NSURL = NSURL(string:Url)!
@@ -40,7 +41,7 @@ class YoutubeHelper: NSObject {
             }*/
             
             let json = JSON(data: data)
-        
+            //get video ID from json
             if let vidID = json["items"][0]["id"]["videoId"].stringValue as NSString? {
                 println("https://www.youtube.com/watch?v=\(vidID)")
                 VideoID(vidID)
