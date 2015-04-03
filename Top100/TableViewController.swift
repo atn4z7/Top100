@@ -13,6 +13,7 @@ class TableViewController: UITableViewController, NSXMLParserDelegate {
     
     var myFeed : NSArray = []
     var url: NSURL = NSURL()
+    let model = Model.sharedInstance()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,6 +36,7 @@ class TableViewController: UITableViewController, NSXMLParserDelegate {
         var myParser : XmlParserManager = XmlParserManager.alloc().initWithURL(data) as XmlParserManager
         // Put feed in array
         myFeed = myParser.feeds
+        model.setData(myFeed)
         tableView.reloadData()
     }
 
@@ -50,6 +52,7 @@ class TableViewController: UITableViewController, NSXMLParserDelegate {
             // Instance of DetailViewController
             let detailVC = segue.destinationViewController as DetailViewController
             detailVC.Title = selectedTitle
+            detailVC.index = indexPath.row
         }
     }
     

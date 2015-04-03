@@ -51,7 +51,8 @@ MP_EXTERN NSString *const XCDYouTubeVideoUserInfoKey;
  *  @discussion You pass a nil videoIdentifier and set the `videoIdentifier` property later.
  */
 - (instancetype) initWithVideoIdentifier:(NSString *)videoIdentifier __attribute__((objc_designated_initializer));
-
+- (void) setVideoIdentifier:(NSString *)videoIdentifier;
+- (void) SETVideoIdentifier:(NSString *)videoIdentifier;
 /**
  *  ------------------------------------
  *  @name Accessing the video identifier
@@ -96,6 +97,7 @@ MP_EXTERN NSString *const XCDYouTubeVideoUserInfoKey;
  *  Ownership of the XCDYouTubeVideoPlayerViewController instance is transferred to the view.
  */
 - (void) presentInView:(UIView *)view;
+
 
 @end
 

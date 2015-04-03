@@ -121,6 +121,43 @@ NSString *const XCDYouTubeVideoUserInfoKey = @"Video";
 		}
 	}];
 }
+- (void) SETVideoIdentifier:(NSString *)videoIdentifier
+{
+    if ([videoIdentifier isEqual:self.videoIdentifier])
+        return;
+    
+    _videoIdentifier = [videoIdentifier copy];
+    
+    [self.videoOperation cancel];
+    self.videoOperation = [[XCDYouTubeClient defaultClient] getVideoWithIdentifier:videoIdentifier completionHandler:^(XCDYouTubeVideo *video, NSError *error)
+                           {
+                               if (video)
+                               {
+                                   NSURL *streamURL = nil;
+                                   for (NSNumber *videoQuality in self.preferredVideoQualities)
+                                   {
+                                       streamURL = video.streamURLs[videoQuality];
+                                       if (streamURL)
+                                       {
+                                           [self startVideo:video streamURL:streamURL];
+                                           //added
+                                           [self.moviePlayer play];
+                                           break;
+                                       }
+                                   }
+                                   
+                                   if (!streamURL)
+                                   {
+                                       NSError *noStreamError = [NSError errorWithDomain:XCDYouTubeVideoErrorDomain code:XCDYouTubeErrorNoStreamAvailable userInfo:nil];
+                                       [self stopWithError:noStreamError];
+                                   }
+                               }
+                               else
+                               {
+                                   [self stopWithError:error];
+                               }
+                           }];
+}
 
 - (void) presentInView:(UIView *)view
 {
