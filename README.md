@@ -20,3 +20,10 @@
 * Autoplay all songs in the generated list
 
 ![](https://github.com/atn4z7/Top100/blob/master/Top100/screenshot/iter3.gif)
+
+##Iteration #4
+
+* Related Files: DetailViewController.swift, TableViewController.swift (all in https://github.com/atn4z7/Top100/tree/master/Top100)
+* Share any song in the list with friends on Facebook or Twitter
+
+![](https://github.com/atn4z7/Top100/blob/master/Top100/screenshot/fb.png)
