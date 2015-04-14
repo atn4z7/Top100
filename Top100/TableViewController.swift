@@ -36,6 +36,7 @@ class TableViewController: UITableViewController, NSXMLParserDelegate {
         var myParser : XmlParserManager = XmlParserManager.alloc().initWithURL(data) as XmlParserManager
         // Put feed in array
         myFeed = myParser.feeds
+        assert(myFeed.count > 0, "list of songs cannot have zero items")
         model.setData(myFeed)
         tableView.reloadData()
     }

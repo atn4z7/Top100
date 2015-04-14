@@ -14,17 +14,48 @@ class DetailViewController: UIViewController {
     var Title = NSString()
     var ID = NSString()
     var SearchURL = NSString()
+    var videoURL = NSString()
     var videoPlayerViewController: XCDYouTubeVideoPlayerViewController!
     let model = Model.sharedInstance()
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        //set title
+        assert(Title.length > 0 , "Title should not be empty")
+        self.navigationItem.title = Title
         //play current selected video
         playCurrentVideo(Title)
         //init nextIndex
         nextIndex = index + 1
+        assert(nextIndex < 100, "index must stay in the 0-100 range since this is a top 100 song list")
+
+        // create share buttons
+        var shareBtn = UIBarButtonItem(image: UIImage(named: "ic_share.png"), style: .Plain, target: self, action: "share")
+        var buttons: [UIBarButtonItem] = [shareBtn];
+        //add share button to navigation bar
+        self.navigationItem.rightBarButtonItems = buttons;
+
+        
     }
-    
+    func share() {
+        println()
+        
+        var sharingItems = [AnyObject]()
+        
+        let text = "Check out this song: \(Title)"
+        sharingItems.append(text)
+        
+        /*
+        if let image = sharingImage {
+            sharingItems.append(image)
+        }
+        */
+        let url = "https://www.youtube.com/watch?v=\(ID)"
+        sharingItems.append(url)
+        
+        let activityViewController = UIActivityViewController(activityItems: sharingItems, applicationActivities: nil)
+        self.presentViewController(activityViewController, animated: true, completion: nil)
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -36,6 +67,7 @@ class DetailViewController: UIViewController {
             YoutubeHelper.getVideoIDFromYoutube(searchURL){
                 (VideoID) in
                 if let responseID = VideoID as NSString? {
+                    self.ID = responseID
                     dispatch_async(dispatch_get_main_queue(), {
                         //init video player
                         self.videoPlayerViewController = XCDYouTubeVideoPlayerViewController(videoIdentifier: responseID)
