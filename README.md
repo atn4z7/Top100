@@ -24,6 +24,7 @@
 ##Iteration #4
 
 * Related Files: DetailViewController.swift, TableViewController.swift (all in https://github.com/atn4z7/Top100/tree/master/Top100)
+* Assert statements: TableViewController at line 39, DetailViewController at line 24,30
 * Share any song in the list with friends on Facebook or Twitter
 
 ![](https://github.com/atn4z7/Top100/blob/master/Top100/screenshot/iter4.gif)
