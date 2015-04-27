@@ -29,3 +29,13 @@
 
 ![](https://github.com/atn4z7/Top100/blob/master/Top100/screenshot/iter4.gif)
 ![](https://github.com/atn4z7/Top100/blob/master/Top100/screenshot/fb.png)
+
+##Iteration #5
+
+* Related Files:  FavoritesViewController.swift, DetailViewController.swift, Model.swift, TableViewCell.swift, TableViewController.swift (these are in https://github.com/atn4z7/Top100/tree/master/Top100) and FavoritesViewControllerTests.swift (in https://github.com/atn4z7/Top100/tree/master/Top100Tests)
+* Create a playlist of favorite songs (data is stored in a mysql database)
+
+![](https://github.com/atn4z7/Top100/blob/master/Top100/screenshot/iter5.gif)
+
+![](https://github.com/atn4z7/Top100/blob/master/Top100/screenshot/iter5_testfail.png)
+![](https://github.com/atn4z7/Top100/blob/master/Top100/screenshot/iter5_testpass.png)
