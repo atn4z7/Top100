@@ -81,7 +81,7 @@
 		BC8113431A969279007C4CA0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BC8113441A969279007C4CA0 /* Top100Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Top100Tests.swift; sourceTree = "<group>"; };
 		BCA59C241AEDE92E005B9D66 /* music.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = music.png; sourceTree = "<group>"; };
-		BCA59C2B1AEDF6CD005B9D66 /* FavoritesViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoritesViewControllerTests.swift; sourceTree = "<group>"; };
+		BCA59C2B1AEDF6CD005B9D66 /* FavoritesViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FavoritesViewControllerTests.swift; path = Top100Tests/FavoritesViewControllerTests.swift; sourceTree = SOURCE_ROOT; };
 		BCA59C301AEDF76A005B9D66 /* libPods.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPods.a; path = "Pods/build/Debug-iphoneos/libPods.a"; sourceTree = "<group>"; };
 		BCA59C3F1AEE08DF005B9D66 /* iter5.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = iter5.gif; sourceTree = "<group>"; };
 		BCA59C401AEE08DF005B9D66 /* iter5_testfail.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iter5_testfail.png; sourceTree = "<group>"; };
