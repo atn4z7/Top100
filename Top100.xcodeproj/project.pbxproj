@@ -211,9 +211,9 @@
 		BC8113411A969279007C4CA0 /* Top100Tests */ = {
 			isa = PBXGroup;
 			children = (
+				BCA59C2B1AEDF6CD005B9D66 /* FavoritesViewControllerTests.swift */,
 				BC8113441A969279007C4CA0 /* Top100Tests.swift */,
 				BC8113421A969279007C4CA0 /* Supporting Files */,
-				BCA59C2B1AEDF6CD005B9D66 /* FavoritesViewControllerTests.swift */,
 			);
 			path = Top100Tests;
 			sourceTree = "<group>";
