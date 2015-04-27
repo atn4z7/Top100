@@ -29,7 +29,6 @@
 		BC8113391A969279007C4CA0 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC8113371A969279007C4CA0 /* LaunchScreen.xib */; };
 		BC8113451A969279007C4CA0 /* Top100Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC8113441A969279007C4CA0 /* Top100Tests.swift */; };
 		BCA59C251AEDE92E005B9D66 /* music.png in Resources */ = {isa = PBXBuildFile; fileRef = BCA59C241AEDE92E005B9D66 /* music.png */; };
-		BCA59C2C1AEDF6CD005B9D66 /* FavoritesViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCA59C2B1AEDF6CD005B9D66 /* FavoritesViewControllerTests.swift */; };
 		BCA59C3A1AEDFD3A005B9D66 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = F023B7A91AA8F5790072B9AD /* SwiftyJSON.swift */; };
 		BCA59C3C1AEDFD43005B9D66 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCDE8AAF1A9699DC00A8C323 /* TableViewCell.swift */; };
 		BCA59C3D1AEDFD94005B9D66 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC339A341ACEE58B00E3399B /* Model.swift */; };
@@ -81,7 +80,6 @@
 		BC8113431A969279007C4CA0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BC8113441A969279007C4CA0 /* Top100Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Top100Tests.swift; sourceTree = "<group>"; };
 		BCA59C241AEDE92E005B9D66 /* music.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = music.png; sourceTree = "<group>"; };
-		BCA59C2B1AEDF6CD005B9D66 /* FavoritesViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FavoritesViewControllerTests.swift; path = Top100Tests/FavoritesViewControllerTests.swift; sourceTree = SOURCE_ROOT; };
 		BCA59C301AEDF76A005B9D66 /* libPods.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPods.a; path = "Pods/build/Debug-iphoneos/libPods.a"; sourceTree = "<group>"; };
 		BCA59C3F1AEE08DF005B9D66 /* iter5.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = iter5.gif; sourceTree = "<group>"; };
 		BCA59C401AEE08DF005B9D66 /* iter5_testfail.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iter5_testfail.png; sourceTree = "<group>"; };
@@ -211,7 +209,6 @@
 		BC8113411A969279007C4CA0 /* Top100Tests */ = {
 			isa = PBXGroup;
 			children = (
-				BCA59C2B1AEDF6CD005B9D66 /* FavoritesViewControllerTests.swift */,
 				BC8113441A969279007C4CA0 /* Top100Tests.swift */,
 				BC8113421A969279007C4CA0 /* Supporting Files */,
 			);
@@ -403,7 +400,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				BCA59C3D1AEDFD94005B9D66 /* Model.swift in Sources */,
-				BCA59C2C1AEDF6CD005B9D66 /* FavoritesViewControllerTests.swift in Sources */,
 				BCA59C3E1AEDFD97005B9D66 /* YoutubeHelper.swift in Sources */,
 				BCA59C3C1AEDFD43005B9D66 /* TableViewCell.swift in Sources */,
 				BC8113451A969279007C4CA0 /* Top100Tests.swift in Sources */,
