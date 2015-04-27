@@ -36,7 +36,6 @@
 		BCA59C421AEE08DF005B9D66 /* iter5.gif in Resources */ = {isa = PBXBuildFile; fileRef = BCA59C3F1AEE08DF005B9D66 /* iter5.gif */; };
 		BCA59C431AEE08DF005B9D66 /* iter5_testfail.png in Resources */ = {isa = PBXBuildFile; fileRef = BCA59C401AEE08DF005B9D66 /* iter5_testfail.png */; };
 		BCA59C441AEE08DF005B9D66 /* iter5_testpass.png in Resources */ = {isa = PBXBuildFile; fileRef = BCA59C411AEE08DF005B9D66 /* iter5_testpass.png */; };
-		BCA59C811AEE0F00005B9D66 /* FavoritesViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCA59C801AEE0F00005B9D66 /* FavoritesViewControllerTests.swift */; };
 		BCDE8AAC1A96972E00A8C323 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCDE8AAB1A96972E00A8C323 /* TableViewController.swift */; };
 		BCDE8AB01A9699DC00A8C323 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCDE8AAF1A9699DC00A8C323 /* TableViewCell.swift */; };
 		BCDE8AB21A96E69300A8C323 /* XMLParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCDE8AB11A96E69300A8C323 /* XMLParser.swift */; };
@@ -85,7 +84,6 @@
 		BCA59C3F1AEE08DF005B9D66 /* iter5.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = iter5.gif; sourceTree = "<group>"; };
 		BCA59C401AEE08DF005B9D66 /* iter5_testfail.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iter5_testfail.png; sourceTree = "<group>"; };
 		BCA59C411AEE08DF005B9D66 /* iter5_testpass.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iter5_testpass.png; sourceTree = "<group>"; };
-		BCA59C801AEE0F00005B9D66 /* FavoritesViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoritesViewControllerTests.swift; sourceTree = "<group>"; };
 		BCDE8AAB1A96972E00A8C323 /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		BCDE8AAF1A9699DC00A8C323 /* TableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		BCDE8AB11A96E69300A8C323 /* XMLParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XMLParser.swift; sourceTree = "<group>"; };
@@ -213,7 +211,6 @@
 			children = (
 				BC8113441A969279007C4CA0 /* Top100Tests.swift */,
 				BC8113421A969279007C4CA0 /* Supporting Files */,
-				BCA59C801AEE0F00005B9D66 /* FavoritesViewControllerTests.swift */,
 			);
 			path = Top100Tests;
 			sourceTree = "<group>";
@@ -402,7 +399,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BCA59C811AEE0F00005B9D66 /* FavoritesViewControllerTests.swift in Sources */,
 				BCA59C3D1AEDFD94005B9D66 /* Model.swift in Sources */,
 				BCA59C3E1AEDFD97005B9D66 /* YoutubeHelper.swift in Sources */,
 				BCA59C3C1AEDFD43005B9D66 /* TableViewCell.swift in Sources */,
