@@ -11,7 +11,7 @@ import Foundation
 
 class TableViewCell: UITableViewCell {
 
-    
+    var SongID = NSString(string:"0")
     @IBOutlet var SongImg: UIImageView!
     
     @IBOutlet var SongTitle: UILabel!
@@ -19,7 +19,8 @@ class TableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-       SongImg.contentMode = UIViewContentMode.ScaleAspectFit
+        SongImg.contentMode = UIViewContentMode.ScaleAspectFit
+        
         /*
         SongImg.autoresizingMask = ( UIViewAutoresizing.FlexibleBottomMargin
             | UIViewAutoresizing.FlexibleHeight

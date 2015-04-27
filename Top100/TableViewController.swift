@@ -17,7 +17,10 @@ class TableViewController: UITableViewController, NSXMLParserDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        //set title
+        self.navigationItem.title = "Top 100"
+        
+        //self.tableView.contentInset = UIEdgeInsetsMake(60,0,0,0);
         self.tableView.rowHeight = 70
         self.tableView.dataSource = self
         self.tableView.delegate = self
@@ -49,11 +52,14 @@ class TableViewController: UITableViewController, NSXMLParserDelegate {
             var indexPath: NSIndexPath = self.tableView.indexPathForSelectedRow()!
         
             let selectedTitle: String = myFeed[indexPath.row].objectForKey("title") as String
-            
+            let selectedPicLink: String = myFeed[indexPath.row].objectForKey("image") as String
             // Instance of DetailViewController
             let detailVC = segue.destinationViewController as DetailViewController
             detailVC.Title = selectedTitle
+            detailVC.PicLink = selectedPicLink
             detailVC.index = indexPath.row
+            detailVC.parentVC = "TableViewController"
+
         }
     }
     

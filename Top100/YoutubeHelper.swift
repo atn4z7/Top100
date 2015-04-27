@@ -10,7 +10,7 @@ import Foundation
 
 
 class YoutubeHelper: NSObject {
-    class var apiKey: NSString { return "" }
+    class var apiKey: NSString { return "AIzaSyAoju6sWpya1U54gBOmUE-CZhjD-vwrKzU" }
      //func encode the title and return the search url
     class func encodeTitle(title:NSString)->NSString{
         //get video ID on youtube
@@ -21,7 +21,7 @@ class YoutubeHelper: NSObject {
         return url
     }
     //func get videoID on Youtube
-    class func getVideoIDFromYoutube(Url: NSString, VideoID: (NSString) -> ()){
+    class func getVideoIDFromYoutube(Url: NSString,  completionClosure: (VideoID: NSString) -> ()){
         var result = NSString()
         let url: NSURL = NSURL(string:Url)!
         let session = NSURLSession.sharedSession()
@@ -44,7 +44,8 @@ class YoutubeHelper: NSObject {
             //get video ID from json
             if let vidID = json["items"][0]["id"]["videoId"].stringValue as NSString? {
                 println("https://www.youtube.com/watch?v=\(vidID)")
-                VideoID(vidID)
+                completionClosure(VideoID: vidID)
+
             }
         })
         task.resume()

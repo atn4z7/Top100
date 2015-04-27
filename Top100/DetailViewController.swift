@@ -9,17 +9,56 @@
 import UIKit
 
 class DetailViewController: UIViewController {
+    
+    @IBOutlet var sharebutton: UIButton!
+    
+    @IBOutlet var favoritebutton: UIButton!
+    
+    @IBOutlet var playerView: UIView!
+    
+    var parentVC = NSString()
     var index : Int!
     var nextIndex : Int!
     var Title = NSString()
+    var PicLink = NSString()
     var ID = NSString()
     var SearchURL = NSString()
     var videoURL = NSString()
     var videoPlayerViewController: XCDYouTubeVideoPlayerViewController!
     let model = Model.sharedInstance()
+    
+      
+    @IBAction func share(sender: UIButton) {
+        share()
+    }
+    
+    @IBAction func favorite(sender: UIButton) {
+        model.addSong(PicLink, Title: Title)
+        favoritebutton.enabled = false
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        //adding border to buttons
+        sharebutton.layer.cornerRadius = 2
+        sharebutton.layer.borderWidth = 1
+        sharebutton.layer.borderColor = sharebutton.tintColor!.CGColor
+        favoritebutton.layer.cornerRadius = 2
+        favoritebutton.layer.borderWidth = 1
+        favoritebutton.layer.borderColor = favoritebutton.tintColor!.CGColor
+
+        if parentVC == "TableViewController" {
+            // parentVC is TableViewController
+            println("parentVC is TableViewController")
+        } else if parentVC == "FavoritesViewController" {
+            // parentVC is FavoritesViewController
+            println("parentVC is FavoritesViewController")
+            favoritebutton.hidden = true
+        }
+        
+        
+        
         //set title
         assert(Title.length > 0 , "Title should not be empty")
         self.navigationItem.title = Title
@@ -28,15 +67,17 @@ class DetailViewController: UIViewController {
         //init nextIndex
         nextIndex = index + 1
         assert(nextIndex < 100, "index must stay in the 0-100 range since this is a top 100 song list")
-
+        
+        /*
         // create share buttons
         var shareBtn = UIBarButtonItem(image: UIImage(named: "ic_share.png"), style: .Plain, target: self, action: "share")
         var buttons: [UIBarButtonItem] = [shareBtn];
         //add share button to navigation bar
         self.navigationItem.rightBarButtonItems = buttons;
-
         
+        */
     }
+    //function to share song with friends
     func share() {
         println()
         
@@ -47,7 +88,7 @@ class DetailViewController: UIViewController {
         
         /*
         if let image = sharingImage {
-            sharingItems.append(image)
+        sharingItems.append(image)
         }
         */
         let url = "https://www.youtube.com/watch?v=\(ID)"
@@ -56,6 +97,7 @@ class DetailViewController: UIViewController {
         let activityViewController = UIActivityViewController(activityItems: sharingItems, applicationActivities: nil)
         self.presentViewController(activityViewController, animated: true, completion: nil)
     }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -64,30 +106,32 @@ class DetailViewController: UIViewController {
         //encode title, get video ID then play it
         var searchURL = YoutubeHelper.encodeTitle(title)
         //search video ID in new threads
-            YoutubeHelper.getVideoIDFromYoutube(searchURL){
-                (VideoID) in
-                if let responseID = VideoID as NSString? {
-                    self.ID = responseID
-                    dispatch_async(dispatch_get_main_queue(), {
-                        //init video player
-                        self.videoPlayerViewController = XCDYouTubeVideoPlayerViewController(videoIdentifier: responseID)
-                        //remove default behavior
-                        NSNotificationCenter.defaultCenter().removeObserver(
-                            self.videoPlayerViewController,
-                            name: MPMoviePlayerPlaybackDidFinishNotification,
-                            object: self.videoPlayerViewController.moviePlayer)
-                        //add our own
-                        NSNotificationCenter.defaultCenter().addObserver(
-                            self,
-                            selector: "moviePlayBackDidFinish:",
-                            name: MPMoviePlayerPlaybackDidFinishNotification,
-                            object: self.videoPlayerViewController.moviePlayer)
-                        
-                        
-                        self.presentMoviePlayerViewControllerAnimated(self.videoPlayerViewController)
-                    });
-                }
+        YoutubeHelper.getVideoIDFromYoutube(searchURL){
+            (VideoID) in
+            if let responseID = VideoID as NSString? {
+                self.ID = responseID
+                dispatch_async(dispatch_get_main_queue(), {
+                    //init video player
+                    self.videoPlayerViewController = XCDYouTubeVideoPlayerViewController(videoIdentifier: responseID)
+                    //remove default behavior
+                    NSNotificationCenter.defaultCenter().removeObserver(
+                        self.videoPlayerViewController,
+                        name: MPMoviePlayerPlaybackDidFinishNotification,
+                        object: self.videoPlayerViewController.moviePlayer)
+                    //add our own
+                    NSNotificationCenter.defaultCenter().addObserver(
+                        self,
+                        selector: "moviePlayBackDidFinish:",
+                        name: MPMoviePlayerPlaybackDidFinishNotification,
+                        object: self.videoPlayerViewController.moviePlayer)
+                    
+                    self.videoPlayerViewController.presentInView(self.playerView)
+                    self.videoPlayerViewController.moviePlayer.play()
+                    
+                    //self.presentMoviePlayerViewControllerAnimated(self.videoPlayerViewController)
+                });
             }
+        }
     }
     
     func playAnyVideo(title:NSString){
