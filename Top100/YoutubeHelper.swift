@@ -10,7 +10,7 @@ import Foundation
 
 
 class YoutubeHelper: NSObject {
-    class var apiKey: NSString { return "AIzaSyAoju6sWpya1U54gBOmUE-CZhjD-vwrKzU" }
+    class var apiKey: NSString { return "" }
      //func encode the title and return the search url
     class func encodeTitle(title:NSString)->NSString{
         //get video ID on youtube
