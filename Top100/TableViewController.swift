@@ -11,55 +11,65 @@ import UIKit
 
 class TableViewController: UITableViewController, NSXMLParserDelegate {
     
-    var myFeed : NSArray = []
-    var url: NSURL = NSURL()
-    let model = Model.sharedInstance()
+    private var myFeed : NSArray = []
+    private var url: NSURL = NSURL()
+    private let model = Model.sharedInstance()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         //set title
         self.navigationItem.title = "Top 100"
         
-        //self.tableView.contentInset = UIEdgeInsetsMake(60,0,0,0);
+        //set tableview settings
         self.tableView.rowHeight = 70
         self.tableView.dataSource = self
         self.tableView.delegate = self
         
         
-        // Set feed url
+        //set feed url
         var url = NSURL(string: "https://itunes.apple.com/us/rss/topsongs/limit=100/xml")!
-        // Call custom function.
+        
+        //load rss for url
         loadRss(url)
-
-        
     }
         
-    func loadRss(data: NSURL) {
-        // XmlParserManager instance
-        var myParser : XmlParserManager = XmlParserManager.alloc().initWithURL(data) as XmlParserManager
-        // Put feed in array
-        myFeed = myParser.feeds
-        assert(myFeed.count > 0, "list of songs cannot have zero items")
-        model.setData(myFeed)
-        tableView.reloadData()
+    private func loadRss(data: NSURL) {
+        //get xml and parse in new thread then update ui in main thread
+        let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
+        dispatch_async(dispatch_get_global_queue(priority, 0)) {
+            // do some task
+            // XmlParserManager instance
+            var myParser : XmlParserManager = XmlParserManager.alloc().initWithURL(data) as XmlParserManager
+            
+            dispatch_async(dispatch_get_main_queue()) {
+                // update some UI
+                // Put feed in array
+                self.myFeed = myParser.getFeeds()
+                assert(self.myFeed.count > 0, "list of songs cannot have zero items")
+                self.model.setData(self.myFeed)
+                self.tableView.reloadData()
+            }
+        }
     }
-
-
+    
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
             
        if segue.identifier == "playSong" {
+            //get selected item
             var indexPath: NSIndexPath = self.tableView.indexPathForSelectedRow()!
-        
             let selectedTitle: String = myFeed[indexPath.row].objectForKey("title") as String
             let selectedPicLink: String = myFeed[indexPath.row].objectForKey("image") as String
+        
             // Instance of DetailViewController
             let detailVC = segue.destinationViewController as DetailViewController
-            detailVC.Title = selectedTitle
-            detailVC.PicLink = selectedPicLink
-            detailVC.index = indexPath.row
-            detailVC.parentVC = "TableViewController"
-
+        
+            //transfer data to new view
+            detailVC.setTitle(selectedTitle)
+            detailVC.setPicLink(selectedPicLink)
+            detailVC.setIndex(indexPath.row)
+            detailVC.setParentVC("TableViewController")
         }
     }
     
@@ -90,22 +100,25 @@ class TableViewController: UITableViewController, NSXMLParserDelegate {
         var dict : NSDictionary! = myFeed.objectAtIndex(indexPath.row) as NSDictionary
         
         // Set cell properties.
-    //cell.SongTitle.numberOfLines = 3
-        cell.SongTitle.text = myFeed.objectAtIndex(indexPath.row).objectForKey("title") as? String
+        if let title = myFeed.objectAtIndex(indexPath.row).objectForKey("title") as? String{
+            cell.setTitle(title)
+        }
+        
         var urlString = myFeed.objectAtIndex(indexPath.row).objectForKey("image") as? String
        
         var url = NSURL(string: urlString!)
         var image: UIImage?
+        
+        //download the image for cell in a separate thread
         var request: NSURLRequest = NSURLRequest(URL: url!)
         NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler: {(response: NSURLResponse!, data: NSData!, error: NSError!) -> Void in
-            image = UIImage(data: data)
-            cell.SongImg.image = image
+               cell.setImg(data)
         })
         return cell
     }
+    
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         self.performSegueWithIdentifier("playSong", sender: self)
-
     }
     
 }

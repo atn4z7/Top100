@@ -10,9 +10,11 @@ import Foundation
 
 
 class YoutubeHelper: NSObject {
-    class var apiKey: NSString { return "" }
+    
+    private class var apiKey: NSString { return "AIzaSyCdMTF6gggEp6aTTLPPvv54L_i5I7snWsk" }
+    
      //func encode the title and return the search url
-    class func encodeTitle(title:NSString)->NSString{
+    public class func encodeTitle(title:NSString)->NSString{
         //get video ID on youtube
         var originalString = title
         var escapedString = originalString.stringByAddingPercentEncodingWithAllowedCharacters(
@@ -20,11 +22,13 @@ class YoutubeHelper: NSObject {
         var url = "https://www.googleapis.com/youtube/v3/search?part=snippet&order=viewCount&q=\(escapedString!)&type=video&videoCaption=any&videoCategoryId=10&key=\(apiKey)"
         return url
     }
+    
     //func get videoID on Youtube
-    class func getVideoIDFromYoutube(Url: NSString,  completionClosure: (VideoID: NSString) -> ()){
+    public class func getVideoIDFromYoutube(Url: NSString,  completionClosure: (VideoID: NSString) -> ()){
         var result = NSString()
         let url: NSURL = NSURL(string:Url)!
         let session = NSURLSession.sharedSession()
+        //get data in a separate thread
         let task = session.dataTaskWithURL(url, completionHandler: {data, response, error -> Void in
             
             if error != nil {
@@ -45,11 +49,8 @@ class YoutubeHelper: NSObject {
             if let vidID = json["items"][0]["id"]["videoId"].stringValue as NSString? {
                 println("https://www.youtube.com/watch?v=\(vidID)")
                 completionClosure(VideoID: vidID)
-
             }
         })
         task.resume()
     }
-    
-
 }

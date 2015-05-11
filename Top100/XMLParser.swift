@@ -13,22 +13,25 @@ import AVFoundation
 
 class XmlParserManager: NSObject,NSXMLParserDelegate {
     
-    var parser = NSXMLParser()
-    var feeds = NSMutableArray()
-    var elements = NSMutableDictionary()
-    var element = NSString()
-    var ftitle = NSMutableString()
-    var link = NSMutableString()
-    var height = NSString()
+    private var parser = NSXMLParser()
+    private var feeds = NSMutableArray()
+    private var elements = NSMutableDictionary()
+    private var element = NSString()
+    private var ftitle = NSMutableString()
+    private var link = NSMutableString()
+    private var height = NSString()
   
+    public func getFeeds() -> NSMutableArray {
+        return feeds
+    }
     
     // initilise parser
-    func initWithURL(url :NSURL) -> AnyObject {
+    internal func initWithURL(url :NSURL) -> AnyObject {
         startParse(url)
         return self
     }
     
-    func startParse(url :NSURL) {
+    internal func startParse(url :NSURL) {
         feeds = []
         parser = NSXMLParser(contentsOfURL: url)!
         parser.delegate = self
@@ -38,11 +41,11 @@ class XmlParserManager: NSObject,NSXMLParserDelegate {
         parser.parse()
     }
     
-    func allFeeds() -> NSMutableArray {
+    private func allFeeds() -> NSMutableArray {
         return feeds
     }
     
-    func parser(parser: NSXMLParser!, didStartElement elementName: String!, namespaceURI: String!, qualifiedName: String!, attributes attributeDict: NSDictionary!) {
+    internal func parser(parser: NSXMLParser!, didStartElement elementName: String!, namespaceURI: String!, qualifiedName: String!, attributes attributeDict: NSDictionary!) {
         
         element = elementName
         
@@ -60,7 +63,7 @@ class XmlParserManager: NSObject,NSXMLParserDelegate {
         
     }
     
-    func parser(parser: NSXMLParser!, didEndElement elementName: String!, namespaceURI: String!, qualifiedName qName: String!) {
+    internal func parser(parser: NSXMLParser!, didEndElement elementName: String!, namespaceURI: String!, qualifiedName qName: String!) {
         
         if (elementName as NSString).isEqualToString("entry") {
             if ftitle != "" {
@@ -78,7 +81,7 @@ class XmlParserManager: NSObject,NSXMLParserDelegate {
     }
     
 
-    func parser(parser: NSXMLParser!, foundCharacters string: String!) {
+    internal func parser(parser: NSXMLParser!, foundCharacters string: String!) {
         var temp = string.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
         if element.isEqualToString("title") {
             ftitle.appendString(temp)

@@ -11,10 +11,18 @@ import Foundation
 
 class TableViewCell: UITableViewCell {
 
-    var SongID = NSString(string:"0")
-    @IBOutlet var SongImg: UIImageView!
+    private var SongID = NSString(string:"0")
+    @IBOutlet private var SongImg: UIImageView!
     
-    @IBOutlet var SongTitle: UILabel!
+    @IBOutlet private var SongTitle: UILabel!
+    
+    public func setImg(data : NSData){
+        SongImg.image = UIImage(data: data)
+    }
+    
+    public func setTitle(title : String){
+        SongTitle.text = title
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()

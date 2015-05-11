@@ -13,24 +13,24 @@ import UIKit
 
 
 class FavoritesViewController: UITableViewController {
-    var mylist : NSMutableArray = []
-    let model = Model.sharedInstance()
-    //function to delete a song on database
-    
+    private var mylist : NSMutableArray = []
+    private let model = Model.sharedInstance()
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        
         if segue.identifier == "playSong" {
+            //get selected item
             var indexPath: NSIndexPath = self.tableView.indexPathForSelectedRow()!
-            
             let selectedTitle: String = mylist[indexPath.row].objectForKey("title") as String
             let selectedPicLink: String = mylist[indexPath.row].objectForKey("image") as String
+            
             // Instance of DetailViewController
             let detailVC = segue.destinationViewController as DetailViewController
-            detailVC.Title = selectedTitle
-            detailVC.PicLink = selectedPicLink
-            detailVC.index = indexPath.row
-            detailVC.parentVC = "FavoritesViewController"
+            
+            //transfer data to new view
+            detailVC.setTitle(selectedTitle)
+            detailVC.setPicLink(selectedPicLink)
+            detailVC.setIndex(indexPath.row)
+            detailVC.setParentVC("FavoritesViewController")
         }
     }
     
@@ -38,14 +38,16 @@ class FavoritesViewController: UITableViewController {
         //get songs from database
         model.getAllSongs(){result in
             self.mylist = result
+            //reload table data in main thread
             NSOperationQueue.mainQueue().addOperationWithBlock() { () in
                 self.tableView.reloadData()
             }
         }
-        
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        //set table cell height
         self.tableView.rowHeight = 70
         //set title
         self.navigationItem.title = "Favorites"
@@ -59,12 +61,15 @@ class FavoritesViewController: UITableViewController {
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if (editingStyle == UITableViewCellEditingStyle.Delete) {
             // handle delete (by removing the data from array and updating the tableview)
+            // recommended way is to update the database then download the data again to show it
+            
             var SongID = mylist.objectAtIndex(indexPath.row).objectForKey("SongID") as String
             
             tableView.beginUpdates()
             mylist.removeObjectAtIndex(indexPath.row)
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation:UITableViewRowAnimation.Automatic)
             tableView.endUpdates()
+            
             //update database
             model.deleteSong(SongID)
             }
@@ -93,8 +98,12 @@ class FavoritesViewController: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as TableViewCell
         
-        cell.SongTitle.text = mylist.objectAtIndex(indexPath.row).objectForKey("title") as? String
-        cell.SongID = mylist.objectAtIndex(indexPath.row).objectForKey("SongID") as String
+        //set cell properties
+        if let title = mylist.objectAtIndex(indexPath.row).objectForKey("title") as? String{
+             cell.setTitle(title)
+        }
+       
+        //cell.SongID = mylist.objectAtIndex(indexPath.row).objectForKey("SongID") as String
         
         var urlString = mylist.objectAtIndex(indexPath.row).objectForKey("image") as? String
         
@@ -102,15 +111,14 @@ class FavoritesViewController: UITableViewController {
         var image: UIImage?
         var request: NSURLRequest = NSURLRequest(URL: url!)
         NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler: {(response: NSURLResponse!, data: NSData!, error: NSError!) -> Void in
-            image = UIImage(data: data)
-            cell.SongImg.image = image
+            cell.setImg(data)
         })
         return cell
         
     }
+    
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         self.performSegueWithIdentifier("playSong", sender: self)
-        
     }
     
 }
